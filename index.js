@@ -3,6 +3,7 @@ const empties = document.querySelectorAll('.empty');
 const filll = document.querySelectorAll('.fill2');
 const fillll =document.querySelectorAll('.fill3');
 const pink =document.querySelectorAll('.fill4');
+const org =document.querySelectorAll('.fill5');
 
 // Fill listeners
 
@@ -25,6 +26,11 @@ fillll.forEach(elem =>{
     elem.addEventListener('dragstart', dragStart);
     elem.addEventListener('dragend', dragEnd3);
     });
+  org.forEach(elem =>{
+      elem.addEventListener('dragstart', dragStart);
+      elem.addEventListener('dragend', dragEnd4);
+      });
+  
 
 
 
@@ -63,6 +69,11 @@ function dragEnd3() {
   this.className = 'fill4';
 }
 
+function dragEnd4() {
+  this.className = 'fill5';
+}
+
+
 function dragOver(e) {
   e.preventDefault();
 }
@@ -96,6 +107,12 @@ function dragDrop(theEvent)
         case "3":
           this.append(filll[2]);
           break;
+        case "4":
+          this.append(filll[3]);
+          break;
+        case "5":
+           this.append(filll[4]);
+           break;
         default:;
     }
     
@@ -108,10 +125,16 @@ function dragDrop(theEvent)
       case "2":
         this.append(fill[1]);
         break;
-        case "3":
+      case "3":
           this.append(fill[2]);
           break;
-        default:;
+      case "4":
+          this.append(fill[3]);
+          break;
+      case "5":
+          this.append(fill[4]);
+          break;
+          default:;
     }
 
     if(id.startsWith("g"))                 //green tiles drop
@@ -123,8 +146,14 @@ function dragDrop(theEvent)
       case "2":
         this.append(fillll[1]);
         break;
-        case "3":
+      case "3":
           this.append(fillll[2]);
+          break;
+      case "4":
+          this.append(fillll[3]);
+          break;
+      case "5":
+          this.append(fillll[4]);
           break;
         default:;
     }
@@ -137,8 +166,32 @@ function dragDrop(theEvent)
       case "2":
         this.append(pink[1]);
         break;
-        case "3":
-          this.append(pink[2]);
+      case "3":
+        this.append(pink[2]);
+        break;
+      case "4":
+          this.append(pink[3]);
+          break;
+      case "5":
+          this.append(pink[4]);
+          break;
+        default:;
+    }
+
+    if(id.startsWith("o"))                 //orange tiles drop
+    switch(id[6])
+    {
+      case "1":
+        this.append(org[0]);
+        break;
+      case "2":
+        this.append(org[1]);
+        break;
+      case "3":
+        this.append(org[2]);
+        break;
+      case "4":
+          this.append(org[3]);
           break;
         default:;
     }
