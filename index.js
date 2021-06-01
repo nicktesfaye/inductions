@@ -6,9 +6,14 @@ const red =document.querySelectorAll('.fill4');
 const white =document.querySelectorAll('.fill5');
 let ARR=document.querySelectorAll('.empty');
 
-
-ARR[0]=ARR[1];
-console.log(ARR);
+var parent = document.getElementById("p1");
+var divs = parent.children;
+var frag = document.createDocumentFragment();
+while (divs.length) {
+    frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
+}
+parent.appendChild(frag);
+console.log(parent);
 
 
 
