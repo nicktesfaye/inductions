@@ -47,6 +47,8 @@ body {
 }
 
 .empty {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   height: 86px;
   width: 86px;
   margin: 3px;
