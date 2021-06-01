@@ -47,11 +47,15 @@ body {
 }
 
 .empty {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: 86px;
+  height: 86px;
+  width: 86px;
   border: solid 3px grey;
   background: white;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: 92px 92px 100px;
 }
 
 .hovered {
