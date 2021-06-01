@@ -5,8 +5,8 @@ body {
 .fill1 {
   background-color: rebeccapurple;
   position: relative;
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   top: 3px;
   left: 3px;
   cursor: pointer;
@@ -15,8 +15,8 @@ body {
 .fill2 {
   background-color: yellow;
   position: relative;
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   top: 3px;
   left: 3px;
   cursor: pointer;
@@ -25,8 +25,8 @@ body {
 .fill3 {
   background-color: lightgreen;
   position: relative;
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   top: 3px;
   left: 3px;
   cursor: pointer;
@@ -35,8 +35,18 @@ body {
 .fill4 {
   background-color: pink;
   position: relative;
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
+  top: 3px;
+  left: 3px;
+  cursor: pointer;
+}
+
+.fill5 {
+  background-color: orange;
+  position: relative;
+  height: 50px;
+  width: 50px;
   top: 3px;
   left: 3px;
   cursor: pointer;
@@ -47,15 +57,18 @@ body {
 }
 
 .empty {
-  height: 86px;
-  width: 86px;
+  height: 56px;
+  width: 56px;
   border: solid 3px grey;
   background: white;
 }
 
 .parent {
   display: grid;
-  grid-template-columns: 92px 92px 100px;
+  grid-template-columns: 62px 62px 62px 62px 62px;
+  position: absolute;
+  top: 300px;
+  left: 580px;
 }
 
 .hovered {
