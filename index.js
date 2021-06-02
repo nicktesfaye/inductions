@@ -4,7 +4,6 @@ const filll = document.querySelectorAll('.fill2');
 const fillll =document.querySelectorAll('.fill3');
 const red =document.querySelectorAll('.fill4');
 const white =document.querySelectorAll('.fill5');
-let ARR=document.querySelectorAll('.empty');
 
 var parent = document.getElementById("p1");
 var divs = parent.children;
@@ -13,11 +12,10 @@ while (divs.length) {
     frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
 }
 parent.appendChild(frag);
-console.log(parent);
 
 
 
-// Fill listeners
+ //Fill listeners
 
 fill.forEach(elem =>{
 elem.addEventListener('dragstart', dragStart);
@@ -59,30 +57,40 @@ empties.forEach(elem =>{
 // Drag Functions
 
 function dragStart(theEvent) {
+
   theEvent.dataTransfer.setData("Text", theEvent.target.id);
-  this.className += ' hold';
-setTimeout(() => (this.className = 'invisible'), 0);
+  this.className += " hold";
+  
+setTimeout(() => (this.className = 'none'), 0);
+
 
 }
 
 function dragEnd() {
-  this.className = 'fill1';
+
+this.className = 'fill1';
+check();
+
 }
 
 function dragEnd1() {
   this.className = 'fill2';
+  check();
 }
 
 function dragEnd2() {
   this.className = 'fill3';
+  check();
 }
 
 function dragEnd3() {
   this.className = 'fill4';
+  check();
 }
 
 function dragEnd4() {
   this.className = 'fill5';
+  check();
 }
 
 
@@ -101,14 +109,17 @@ function dragLeave() {
 
 
 function dragDrop(theEvent) 
-{
-  if(this.className==="empty hovered")
-  {
+{ 
+
   var id = theEvent.dataTransfer.getData("Text");
+  if(this.classList.contains("hovered"))
+  
+  {  
   this.className = 'empty';
   
   if(id.startsWith("y"))                //yellow tiles drop
-    switch(id[6])
+   { 
+     switch(id[6])
     {
       case "1":
         this.append(filll[0]);
@@ -126,7 +137,7 @@ function dragDrop(theEvent)
            this.append(filll[4]);
            break;
         default:;
-    }
+    }}
     
     if(id.startsWith("b"))                 //blue tiles drop
     switch(id[4])
@@ -210,4 +221,47 @@ function dragDrop(theEvent)
   }
 
 
+}
+
+let co;
+
+
+function check()
+{ console.clear();
+  for(let i=0,c=0,j=6;i<3;i++,j++,c++)        //console print 3x3 square
+  {
+    co=divs[j].querySelector(".fill1")
+
+    if(co!=null)
+    console.log(co);
+
+    else{
+    co=divs[j].querySelector(".fill2")
+    if(co!=null)
+    console.log(co);
+  
+
+    else{
+    co=divs[j].querySelector(".fill3")
+    if(co!=null)
+    console.log(co);
+      else{
+    co=divs[j].querySelector(".fill4")
+    if(co!=null)
+    console.log(co);
+        else{
+    co=divs[j].querySelector(".fill5")
+    if(co!=null)
+    console.log(co);
+  
+    else
+    console.log("null");}}}}
+
+
+    if(i===2)
+   {j=j+2;i=-1;}
+    if(j==20)
+    break;
+  }
+  
 }
