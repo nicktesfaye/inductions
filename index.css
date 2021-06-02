@@ -15,7 +15,7 @@ hr.hr2 {
   position: absolute;
   width: 292px;
   left: 576px;
-  top: 50px;
+  top: 70px;
   border: 1px solid rgb(173, 169, 169);
   border-radius: 2px;
 }
@@ -116,11 +116,22 @@ hr.hr2 {
 }
 
 .blocks {
-  background-color: white;
+  background-color: grey;
   position: relative;
   height: 50px;
   width: 50px;
   top: 3px;
   left: 3px;
+  border-radius: 3px;
+}
+
+.top {
+  background-color: white;
+  position: relative;
+  height: 44px;
+  width: 44px;
+  top: 3px;
+  left: 3px;
+  cursor: pointer;
   border-radius: 3px;
 }
