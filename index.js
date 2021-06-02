@@ -1,9 +1,13 @@
+
 const fill = document.querySelectorAll('.fill1');
 const empties = document.querySelectorAll('.empty');
 const filll = document.querySelectorAll('.fill2');
 const fillll =document.querySelectorAll('.fill3');
 const red =document.querySelectorAll('.fill4');
 const white =document.querySelectorAll('.fill5');
+const nine=document.querySelectorAll('.top');                                    //get all the variables
+
+
 
 var parent = document.getElementById("p1");
 var divs = parent.children;
@@ -11,11 +15,14 @@ var frag = document.createDocumentFragment();
 while (divs.length) {
     frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
 }
-parent.appendChild(frag);
+parent.appendChild(frag);                                                       //ranomize 5x5 grid colours    
 
 
+start();            //randomise 3x3 grid colours
 
- //Fill listeners
+ 
+
+//Fill listeners
 
 fill.forEach(elem =>{
 elem.addEventListener('dragstart', dragStart);
@@ -41,7 +48,7 @@ fillll.forEach(elem =>{
       elem.addEventListener('dragend', dragEnd4);
       });
   
-
+//end of fill listnenrs
 
 
 
@@ -52,13 +59,15 @@ empties.forEach(elem =>{
   elem.addEventListener('dragleave', dragLeave);
   elem.addEventListener('drop', dragDrop);
 });
- 
+//end of loop
+
+
 
 // Drag Functions
 
 function dragStart(theEvent) {
 
-  theEvent.dataTransfer.setData("Text", theEvent.target.id);
+  theEvent.dataTransfer.setData("Text", theEvent.target.id);      //start
   this.className += " hold";
   
 setTimeout(() => (this.className = 'none'), 0);
@@ -68,7 +77,7 @@ setTimeout(() => (this.className = 'none'), 0);
 
 function dragEnd() {
 
-this.className = 'fill1';
+this.className = 'fill1';                                      //{end
 check();
 
 }
@@ -89,33 +98,36 @@ function dragEnd3() {
 }
 
 function dragEnd4() {
-  this.className = 'fill5';
+  this.className = 'fill5';                                     //end}
   check();
 }
 
 
-function dragOver(e) {
+function dragOver(e) {                                         //over
   e.preventDefault();
 }
 
-function dragEnter(e) {
+function dragEnter(e) {                                        //enter
   e.preventDefault();
   this.className += ' hovered';
 }
 
-function dragLeave() {
+function dragLeave() {                                         //leave
   this.className = 'empty';
 }
 
 
-function dragDrop(theEvent) 
+//drop function to append colors to blank
+
+function dragDrop(theEvent)                 
 { 
 
-  var id = theEvent.dataTransfer.getData("Text");
-  if(this.classList.contains("hovered"))
+  var id = theEvent.dataTransfer.getData("Text");  //get dragging elements id
   
+  if(this.classList.contains("hovered"))           //condition to drop only on empty
   {  
-  this.className = 'empty';
+  
+  this.className = 'empty';             //convert empty hovered  to empty
   
   if(id.startsWith("y"))                //yellow tiles drop
    { 
@@ -223,10 +235,8 @@ function dragDrop(theEvent)
 
 }
 
-let co;
 
-
-function check()
+function check()                              //to compare the 3x3 part
 { console.clear();
   for(let i=0,c=0,j=6;i<3;i++,j++,c++)        //console print 3x3 square
   {
@@ -264,4 +274,20 @@ function check()
     break;
   }
   
+}
+
+
+function start()                          //get random color
+{
+  nine.forEach(color =>{
+    color.style.background =getrandomcolor();
+  });
+}
+
+function getrandomcolor()                    //create random color
+{
+  let letters=["00008B","FFFF00","008000","ff0000","ffffff"];
+  let color="#";
+    color += letters[Math.floor(Math.random()*letters.length)];
+  return color;
 }
