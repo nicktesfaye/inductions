@@ -5,6 +5,7 @@ const filll = document.querySelectorAll('.fill2');
 const fillll =document.querySelectorAll('.fill3');
 const red =document.querySelectorAll('.fill4');
 const white =document.querySelectorAll('.fill5');
+const orange =document.querySelectorAll('.fill6');
 const nine=document.querySelectorAll('.top');                                    //get all the variables
 
 let STR="";
@@ -43,10 +44,17 @@ fillll.forEach(elem =>{
     elem.addEventListener('dragstart', dragStart);
     elem.addEventListener('dragend', dragEnd3);
     });
+ 
   white.forEach(elem =>{
       elem.addEventListener('dragstart', dragStart);
       elem.addEventListener('dragend', dragEnd4);
       });
+
+  orange.forEach(elem =>{
+        elem.addEventListener('dragstart', dragStart);
+        elem.addEventListener('dragend', dragEnd5);
+        });
+
   
 //end of fill listnenrs
 
@@ -111,6 +119,13 @@ function dragEnd4() {
   compare();
 }
 
+function dragEnd5() {
+  console.clear();
+  this.className = 'fill6';                                    
+  get();
+  compare();
+}                                                              //end}
+
 
 function dragOver(e) {                                         //over
   e.preventDefault();
@@ -154,9 +169,6 @@ function dragDrop(theEvent)
         case "4":
           this.append(filll[3]);
           break;
-        case "5":
-           this.append(filll[4]);
-           break;
         default:;
     }}
     
@@ -174,9 +186,6 @@ function dragDrop(theEvent)
           break;
       case "4":
           this.append(fill[3]);
-          break;
-      case "5":
-          this.append(fill[4]);
           break;
           default:;
     }
@@ -196,9 +205,6 @@ function dragDrop(theEvent)
       case "4":
           this.append(fillll[3]);
           break;
-      case "5":
-          this.append(fillll[4]);
-          break;
         default:;
     }
     if(id.startsWith("r"))                 //red tiles drop
@@ -216,9 +222,6 @@ function dragDrop(theEvent)
       case "4":
           this.append(red[3]);
           break;
-      case "5":
-          this.append(red[4]);
-          break;
         default:;
     }
 
@@ -235,8 +238,26 @@ function dragDrop(theEvent)
         this.append(white[2]);
         break;
       case "4":
-          this.append(white[3]);
-          break;
+        this.append(white[3]);
+        break;
+        default:;
+    }
+
+    if(id.startsWith("o"))                 //white tiles drop
+    switch(id[6])
+    {
+      case "1":
+        this.append(orange[0]);
+        break;
+      case "2":
+        this.append(orange[1]);
+        break;
+      case "3":
+        this.append(orange[2]);
+        break;
+      case "4":
+        this.append(orange[3]);
+        break;
         default:;
     }
   }
@@ -297,9 +318,17 @@ function get()                              //to get 3x3 string
       STR += co.id;
       temp=STR.slice(0,-1);
       STR=temp;}
+
+      else{
+        co=divs[j].querySelector(".fill6")
+        if(co!=null)
+        {    
+          STR += co.id;
+          temp=STR.slice(0,-1);
+          STR=temp;}
   
     else
-    STR+="null";}}}
+    STR+="null";}}}}
   
   }
 
@@ -322,13 +351,15 @@ function start()                          //get random color
 
 function getrandomcolor()                    //create random color
 {
-  let letters=["red","darkblue","yellow","white","green"];
+  let letters=["red","darkblue","yellow","white","green","orange"];
  let color= letters[Math.floor(Math.random()*letters.length)];
  CMP+=color;
   return color;
 }
 
-function compare(){
+
+function compare()
+{
 if(STR.localeCompare(CMP)===0)
 console.log("same");
 else
