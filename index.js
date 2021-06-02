@@ -7,8 +7,8 @@ const red =document.querySelectorAll('.fill4');
 const white =document.querySelectorAll('.fill5');
 const nine=document.querySelectorAll('.top');                                    //get all the variables
 
-
-
+let STR="";
+let CMP="";
 var parent = document.getElementById("p1");
 var divs = parent.children;
 var frag = document.createDocumentFragment();
@@ -76,30 +76,39 @@ setTimeout(() => (this.className = 'none'), 0);
 }
 
 function dragEnd() {
-
+console.clear();
 this.className = 'fill1';                                      //{end
-check();
+get();
+compare();
 
 }
 
 function dragEnd1() {
+  console.clear();
   this.className = 'fill2';
-  check();
+  get();
+  compare();
 }
 
 function dragEnd2() {
+  console.clear();
   this.className = 'fill3';
-  check();
+  get();
+  compare();
 }
 
 function dragEnd3() {
+  console.clear();
   this.className = 'fill4';
-  check();
+  get();
+  compare();
 }
 
 function dragEnd4() {
+  console.clear();
   this.className = 'fill5';                                     //end}
-  check();
+  get();
+  compare();
 }
 
 
@@ -151,8 +160,8 @@ function dragDrop(theEvent)
         default:;
     }}
     
-    if(id.startsWith("b"))                 //blue tiles drop
-    switch(id[4])
+    if(id.startsWith("d"))                 //blue tiles drop
+    switch(id[8])
     {
       case "1":
         this.append(fill[0]);
@@ -193,7 +202,7 @@ function dragDrop(theEvent)
         default:;
     }
     if(id.startsWith("r"))                 //red tiles drop
-    switch(id[4])
+    switch(id[3])
     {
       case "1":
         this.append(red[0]);
@@ -236,36 +245,63 @@ function dragDrop(theEvent)
 }
 
 
-function check()                              //to compare the 3x3 part
-{ console.clear();
+function get()                              //to get 3x3 string
+{ 
+
+  let co;
+  let temp="";
+
   for(let i=0,c=0,j=6;i<3;i++,j++,c++)        //console print 3x3 square
   {
     co=divs[j].querySelector(".fill1")
 
     if(co!=null)
-    console.log(co);
+    {
+    
+    STR += co.id;
+    temp=STR.slice(0,-1);
+    STR=temp;
+   }
 
     else{
     co=divs[j].querySelector(".fill2")
     if(co!=null)
-    console.log(co);
+    {    
+      STR += co.id;
+      temp=STR.slice(0,-1);
+      STR=temp;
+      }
   
 
     else{
     co=divs[j].querySelector(".fill3")
     if(co!=null)
-    console.log(co);
-      else{
+    {    
+      STR += co.id;
+      temp=STR.slice(0,-1);
+      STR=temp;
+      }
+
+     else{
     co=divs[j].querySelector(".fill4")
     if(co!=null)
-    console.log(co);
+    {    
+      STR += co.id;
+      temp=STR.slice(0,-1);
+      STR=temp;}
+
         else{
     co=divs[j].querySelector(".fill5")
     if(co!=null)
-    console.log(co);
+    {    
+      STR += co.id;
+      temp=STR.slice(0,-1);
+      STR=temp;}
   
     else
-    console.log("null");}}}}
+    STR+="null";}}}
+  
+  }
 
 
     if(i===2)
@@ -273,7 +309,7 @@ function check()                              //to compare the 3x3 part
     if(j==20)
     break;
   }
-  
+
 }
 
 
@@ -286,8 +322,16 @@ function start()                          //get random color
 
 function getrandomcolor()                    //create random color
 {
-  let letters=["00008B","FFFF00","008000","ff0000","ffffff"];
-  let color="#";
-    color += letters[Math.floor(Math.random()*letters.length)];
+  let letters=["red","darkblue","yellow","white","green"];
+ let color= letters[Math.floor(Math.random()*letters.length)];
+ CMP+=color;
   return color;
+}
+
+function compare(){
+if(STR.localeCompare(CMP)===0)
+console.log("same");
+else
+console.log("different");
+STR="";
 }
