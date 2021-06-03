@@ -11,8 +11,8 @@ const reset = document.querySelector('.btn');
 const tryagain1=document.querySelector('.button') ;
 const pop=document.querySelector('.pop');                    //get all the variables
 const close=document.querySelector('.close');
-const score=document.getElementById('2');
-
+const score=document.getElementById('002');
+const grey=document.querySelector('.blank');
 
 let STR="";
 let CMP="";                                     //global variables
@@ -20,6 +20,10 @@ let divs;
 let time1=new Date();
 let points=350;
 let count=0;
+let par;
+
+var parent = document.getElementById("p1");
+divs = parent.children;
 
 start();            //randomise 3x3 grid colours
 rnd();              //randomise 5x5 grid colours
@@ -98,9 +102,9 @@ empties.forEach(elem =>{
 // Drag Functions
 
 function dragStart(theEvent) {
-
   theEvent.dataTransfer.setData("Text", theEvent.target.id);      //start
   this.className += " hold";
+  par=this.parentElement;
   
 setTimeout(() => (this.className = 'none'), 0);
 
@@ -108,7 +112,7 @@ setTimeout(() => (this.className = 'none'), 0);
 }
 
 function dragEnd() {
-console.clear();
+//console.clear();
 this.className = 'fill1';                                      //{end
 get();
 compare();
@@ -116,35 +120,35 @@ compare();
 }
 
 function dragEnd1() {
-  console.clear();
+  //console.clear();
   this.className = 'fill2';
   get();
   compare();
 }
 
 function dragEnd2() {
-  console.clear();
+  //console.clear();
   this.className = 'fill3';
   get();
   compare();
 }
 
 function dragEnd3() {
-  console.clear();
+  //console.clear();
   this.className = 'fill4';
   get();
   compare();
 }
 
 function dragEnd4() {
-  console.clear();
+  //console.clear();
   this.className = 'fill5';                                     
   get();
   compare();
 }
 
 function dragEnd5() {
-  console.clear();
+  //console.clear();
   this.className = 'fill6';                                    
   get();
   compare();
@@ -157,6 +161,7 @@ function dragOver(e) {                                         //over
 
 function dragEnter(e) {                                        //enter
   e.preventDefault();
+  if(this.children[0].id.startsWith("z"))
   this.className += ' hovered';
 }
 
@@ -169,32 +174,35 @@ function dragLeave() {                                         //leave
 
 function dragDrop(theEvent)                 
 { 
-
+  var idd=this.children[0].id;
   var id = theEvent.dataTransfer.getData("Text");  //get dragging elements id
   
-  if(this.classList.contains("hovered"))           //condition to drop only on empty
+  if(idd.startsWith("z"))           //condition to drop only on empty
   {  
-  
+ 
   this.className = 'empty';             //convert empty hovered  to empty
-  
-  if(id.startsWith("y"))                //yellow tiles drop
+    if(id.startsWith("y"))                //yellow tiles drop
    { 
      switch(id[6])
     {
       case "1":
         this.append(filll[0]);
+        par.append(grey);
         count++;
         break;
       case "2":
         this.append(filll[1]);
+        par.append(grey);
         count++;
         break;
         case "3":
           this.append(filll[2]);
+          par.append(grey);
           count++;
           break;
         case "4":
           this.append(filll[3]);
+          par.append(grey);
           count++;
           break;
         default:;
@@ -205,18 +213,22 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(fill[0]);
+        par.append(grey);
         count++;
         break;
       case "2":
         this.append(fill[1]);
+        par.append(grey);
         count++;
         break;
       case "3":
           this.append(fill[2]);
+          par.append(grey);
           count++;
           break;
       case "4":
           this.append(fill[3]);
+          par.append(grey);
           count++;
           break;
           default:;
@@ -227,18 +239,22 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(fillll[0]);
+        par.append(grey);
         count++;
         break;
       case "2":
         this.append(fillll[1]);
+        par.append(grey);
         count++;
         break;
       case "3":
           this.append(fillll[2]);
+          par.append(grey);
           count++;
           break;
       case "4":
           this.append(fillll[3]);
+          par.append(grey);
           count++;
           break;
         default:;
@@ -248,18 +264,22 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(red[0]);
+        par.append(grey);
         count++;
         break;
       case "2":
         this.append(red[1]);
+        par.append(grey);
         count++;
         break;
       case "3":
         this.append(red[2]);
+        par.append(grey);
         count++;
         break;
       case "4":
           this.append(red[3]);
+          par.append(grey);
           count++;
           break;
         default:;
@@ -270,18 +290,22 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(white[0]);
+        par.append(grey);
         count++;
         break;
       case "2":
         this.append(white[1]);
+        par.append(grey);
         count++;
         break;
       case "3":
         this.append(white[2]);
+        par.append(grey);
         count++;
         break;
       case "4":
         this.append(white[3]);
+        par.append(grey);
         count++;
         break;
         default:;
@@ -292,18 +316,22 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(orange[0]);
+        par.append(grey);
         count++;
         break;
       case "2":
         this.append(orange[1]);
+        par.append(grey);
         count++;
         break;
       case "3":
         this.append(orange[2]);
+        par.append(grey);
         count++;
         break;
       case "4":
         this.append(orange[3]);
+        par.append(grey);
         count++;
         break;
         default:;
@@ -425,8 +453,7 @@ STR="";
 }
 
 function rnd(){                           //randomise colour for 5x5 grid
-var parent = document.getElementById("p1");
-divs = parent.children;
+
 var frag = document.createDocumentFragment();
 while (divs.length) {
     frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
