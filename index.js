@@ -6,22 +6,43 @@ const fillll =document.querySelectorAll('.fill3');
 const red =document.querySelectorAll('.fill4');
 const white =document.querySelectorAll('.fill5');
 const orange =document.querySelectorAll('.fill6');
-const nine=document.querySelectorAll('.top');                                    //get all the variables
+const nine=document.querySelectorAll('.top');                                    
+const reset = document.querySelector('.btn');                                
+const tryagain1=document.querySelector('.button') ;
+const pop=document.querySelector('.pop');                    //get all the variables
+const close=document.querySelector('.close');
+const score=document.getElementById('2');
 
 let STR="";
-let CMP="";
-var parent = document.getElementById("p1");
-var divs = parent.children;
-var frag = document.createDocumentFragment();
-while (divs.length) {
-    frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
-}
-parent.appendChild(frag);                                                       //ranomize 5x5 grid colours    
+let CMP="";                                     //global variables
+let divs;
+let time1=new Date();
+let points=350;
 
 
 start();            //randomise 3x3 grid colours
+rnd();              //randomise 5x5 grid colours
+
 
  
+reset.addEventListener('click',function(){                                    //buttonclick  reset
+  start();   
+  rnd(); 
+  score.innerHTML = "Score :"
+  time1 =new Date();                                   
+});
+
+tryagain1.addEventListener('click',function(){                                    //buttonclick tryagain
+  start();   
+  rnd();      
+  pop.style.display='none';
+  score.innerHTML = "Score :";
+  time1 =new Date();                             
+});
+
+close.addEventListener('click',function(){                                    //buttonclick tryagain     
+  pop.style.display='none';                             
+});
 
 //Fill listeners
 
@@ -114,7 +135,7 @@ function dragEnd3() {
 
 function dragEnd4() {
   console.clear();
-  this.className = 'fill5';                                     //end}
+  this.className = 'fill5';                                     
   get();
   compare();
 }
@@ -328,7 +349,8 @@ function get()                              //to get 3x3 string
           STR=temp;}
   
     else
-    STR+="null";}}}}
+    STR+="null";}}}
+  }
   
   }
 
@@ -338,12 +360,11 @@ function get()                              //to get 3x3 string
     if(j==20)
     break;
   }
-
 }
 
 
-function start()                          //get random color
-{
+function start()                          //random color for 3x3
+{ CMP="";
   nine.forEach(color =>{
     color.style.background =getrandomcolor();
   });
@@ -358,11 +379,31 @@ function getrandomcolor()                    //create random color
 }
 
 
-function compare()
+function compare()                         //compare the 3x3 grid
 {
 if(STR.localeCompare(CMP)===0)
-console.log("same");
+{console.log("same");
+pop.style.display="flex";
+time2=new Date();
+let total=(time2-time1)/1000;
+if(total<350)
+score.innerHTML += String(Math.floor(points-total));      
+else
+score.innerHTML += String(10);                //append score to display
+}
 else
 console.log("different");
 STR="";
 }
+
+function rnd(){                           //randomise colour for 5x5 grid
+var parent = document.getElementById("p1");
+divs = parent.children;
+var frag = document.createDocumentFragment();
+while (divs.length) {
+    frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
+}
+parent.appendChild(frag);                                                        
+}
+
+
