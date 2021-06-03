@@ -13,12 +13,13 @@ const pop=document.querySelector('.pop');                    //get all the varia
 const close=document.querySelector('.close');
 const score=document.getElementById('2');
 
+
 let STR="";
 let CMP="";                                     //global variables
 let divs;
 let time1=new Date();
 let points=350;
-
+let count=0;
 
 start();            //randomise 3x3 grid colours
 rnd();              //randomise 5x5 grid colours
@@ -29,7 +30,8 @@ reset.addEventListener('click',function(){                                    //
   start();   
   rnd(); 
   score.innerHTML = "Score :"
-  time1 =new Date();                                   
+  time1 =new Date();
+  count=0;                                   
 });
 
 tryagain1.addEventListener('click',function(){                                    //buttonclick tryagain
@@ -37,7 +39,8 @@ tryagain1.addEventListener('click',function(){                                  
   rnd();      
   pop.style.display='none';
   score.innerHTML = "Score :";
-  time1 =new Date();                             
+  time1 =new Date(); 
+  count=0;                            
 });
 
 close.addEventListener('click',function(){                                    //buttonclick tryagain     
@@ -180,15 +183,19 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(filll[0]);
+        count++;
         break;
       case "2":
         this.append(filll[1]);
+        count++;
         break;
         case "3":
           this.append(filll[2]);
+          count++;
           break;
         case "4":
           this.append(filll[3]);
+          count++;
           break;
         default:;
     }}
@@ -198,15 +205,19 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(fill[0]);
+        count++;
         break;
       case "2":
         this.append(fill[1]);
+        count++;
         break;
       case "3":
           this.append(fill[2]);
+          count++;
           break;
       case "4":
           this.append(fill[3]);
+          count++;
           break;
           default:;
     }
@@ -216,15 +227,19 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(fillll[0]);
+        count++;
         break;
       case "2":
         this.append(fillll[1]);
+        count++;
         break;
       case "3":
           this.append(fillll[2]);
+          count++;
           break;
       case "4":
           this.append(fillll[3]);
+          count++;
           break;
         default:;
     }
@@ -233,15 +248,19 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(red[0]);
+        count++;
         break;
       case "2":
         this.append(red[1]);
+        count++;
         break;
       case "3":
         this.append(red[2]);
+        count++;
         break;
       case "4":
           this.append(red[3]);
+          count++;
           break;
         default:;
     }
@@ -251,15 +270,19 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(white[0]);
+        count++;
         break;
       case "2":
         this.append(white[1]);
+        count++;
         break;
       case "3":
         this.append(white[2]);
+        count++;
         break;
       case "4":
         this.append(white[3]);
+        count++;
         break;
         default:;
     }
@@ -269,15 +292,19 @@ function dragDrop(theEvent)
     {
       case "1":
         this.append(orange[0]);
+        count++;
         break;
       case "2":
         this.append(orange[1]);
+        count++;
         break;
       case "3":
         this.append(orange[2]);
+        count++;
         break;
       case "4":
         this.append(orange[3]);
+        count++;
         break;
         default:;
     }
@@ -386,8 +413,9 @@ if(STR.localeCompare(CMP)===0)
 pop.style.display="flex";
 time2=new Date();
 let total=(time2-time1)/1000;
-if(total<350)
-score.innerHTML += String(Math.floor(points-total));      
+total=points-total-(2*count);
+if(total>10)
+score.innerHTML += String(Math.floor(total));      
 else
 score.innerHTML += String(10);                //append score to display
 }
