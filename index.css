@@ -4,20 +4,22 @@ body {
 
 hr.hr1 {
   position: absolute;
-  width: 292px;
-  left: 576px;
+  width: 276px;
+  left: 50%;
   top: 625px;
   border: 1px solid rgb(173, 169, 169);
   border-radius: 2px;
+  transform: translatex(-49%);
 }
 
 hr.hr2 {
   position: absolute;
-  width: 292px;
-  left: 576px;
+  width: 276px;
+  left: 50%;
   top: 70px;
   border: 1px solid rgb(173, 169, 169);
   border-radius: 2px;
+  transform: translatex(-49%);
 }
 
 .fill1 {
@@ -104,7 +106,8 @@ hr.hr2 {
   position: absolute;
   grid-template-rows: 56px 56px 56px 56px 56px;
   top: 320px;
-  left: 580px;
+  left: 50%;
+  transform: translatex(-50%);
 }
 
 .hovered {
@@ -123,7 +126,8 @@ hr.hr2 {
   position: absolute;
   grid-template-rows: 56px 56px 56px;
   top: 120px;
-  left: 635px;
+  left: 50%;
+  transform: translatex(-50%);
 }
 
 .blocks {
@@ -144,4 +148,129 @@ hr.hr2 {
   top: 3px;
   left: 3px;
   border-radius: 3px;
+}
+
+.container {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 630px;
+  transform: translateX(-45%);
+  margin: 1rem auto;
+  padding-top: 1rem;
+  color: #fff;
+}
+
+.btn {
+  background-color: white;
+  border: none;
+  border-radius: 12px;
+  width: 80px;
+  height: 30px;
+  font-size: 1.2rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: transparent;
+  border: 2px solid white;
+  transition: 200ms;
+  transform: scale(1, 1);
+  color: #fff;
+}
+
+.pop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.pop-content {
+  width: 500px;
+  height: 300px;
+  border-radius: 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.button {
+  background-color: blue;
+  border: 2px solid white;
+  border-radius: 30px;
+  text-decoration: none;
+  padding: 10px 28px;
+  color: white;
+  margin-top: 10px;
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translatex(-50%);
+}
+.button:hover {
+  background-color: white;
+  color: blue;
+  border: 2px solid blue;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 42px;
+  transform: rotate(45deg);
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.text3 {
+  animation: blinker 1s linear 0.5;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  color: rgb(45, 230, 45);
+}
+
+.text2 {
+  animation: blinker 1s linear 0.5;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 35px;
+  color: black;
+}
+
+.text1 {
+  animation: blinker 1s linear 0.5;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 35px;
+  color: black;
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
 }
