@@ -14,20 +14,26 @@ const close=document.querySelector('.close');
 const score=document.getElementById('002');
 const grey=document.querySelector('.blank');
 
-let STR="";
-let CMP="";                                     //global variables
-let divs;
-let time1=new Date();
-let points=350;
-let count=0;
-let par;
+let STR="";                   //5x5 string
+let CMP="";                   //3x3 string             
+let divs;                     //empty elements in array order
+let time1=new Date();         //count time
+let points=350;               //max points
+let count=0;                  //count moves
+let par;                      //empty object from which coclor dragged
+let index;                    //element of divs that is blank
+let abc;                      //the dragged element
+let num;                      //blank box  as a element of divs array
+let divsindex;                //parent of dragged element as a element of divs array
+let term=0;                   //find legality of move
 
 var parent = document.getElementById("p1");
 divs = parent.children;
 
+
 start();            //randomise 3x3 grid colours
 rnd();              //randomise 5x5 grid colours
-
+getindex();         //index of blank in the start
 
  
 reset.addEventListener('click',function(){                                    //buttonclick  reset
@@ -101,11 +107,10 @@ empties.forEach(elem =>{
 
 // Drag Functions
 
-function dragStart(theEvent) {
-  theEvent.dataTransfer.setData("Text", theEvent.target.id);      //start
+function dragStart() {    //start
   this.className += " hold";
   par=this.parentElement;
-  
+  abc=this;
 setTimeout(() => (this.className = 'none'), 0);
 
 
@@ -152,6 +157,7 @@ function dragEnd5() {
   this.className = 'fill6';                                    
   get();
   compare();
+  
 }                                                              //end}
 
 
@@ -172,14 +178,68 @@ function dragLeave() {                                         //leave
 
 //drop function to append colors to blank
 
-function dragDrop(theEvent)                 
+function dragDrop()                 
 { 
   var idd=this.children[0].id;
-  var id = theEvent.dataTransfer.getData("Text");  //get dragging elements id
+  var id = abc.id;  //get dragging elements id
+
+  for(let i=0;i<divs.length;i++)
+  {
+    if(abc.parentElement.id===divs[i].id)
+    divsindex=i;
+    
+  }
+
+  let numb=parseInt(num);
+  let divsindex1=parseInt(divsindex);
+  console.log(numb);
+  console.log(divsindex1);
+
   
+
+    if(numb===0)
+    {if(divsindex1===1 || divsindex1===5)
+    term=1;}
+
+    else if(numb===4)
+    {if(divsindex1===3 || divsindex1===9)
+    term=1;}
+
+    else if(numb===20)
+    {if(divsindex1===15 || divsindex1===21)
+    term=1;}
+
+    else if(numb===24)
+    {if(divsindex1===23 || divsindex1===19)
+    term=1;}
+
+    else if(numb===1 || numb===2 || numb=== 3)
+    {if(divsindex1=numb+5 || divsindex1===numb+1 || divsindex1===numb-1)
+    term=1;}
+
+    else if(numb===5 || numb===10 || numb=== 15)
+    {if(divsindex1=numb+5 || divsindex1===numb+1 || divsindex1===numb-5)
+    term=1;}
+
+    else if(numb===21 || numb===22 || numb=== 23)
+    {if(divsindex1=numb-1 || divsindex1===numb+1 || divsindex1===numb-5)
+    term=1;}
+
+    else if(numb===9 || numb===14 || numb=== 19)
+    {if(divsindex1=numb+5 || divsindex1===numb-1 || divsindex1===numb-5)
+    term=1;}
+
+    else
+    {if(divsindex===numb+5 || divsindex===numb-5 || divsindex===numb+1 || divsindex===numb-1)
+    term=1;}
+
+  
+
+ console.log(term);
+  if(term===1)
   if(idd.startsWith("z"))           //condition to drop only on empty
   {  
- 
+    
   this.className = 'empty';             //convert empty hovered  to empty
     if(id.startsWith("y"))                //yellow tiles drop
    { 
@@ -338,7 +398,8 @@ function dragDrop(theEvent)
     }
   }
 
-
+  getindex();
+  term=0; 
 }
 
 
@@ -458,7 +519,23 @@ var frag = document.createDocumentFragment();
 while (divs.length) {
     frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
 }
-parent.appendChild(frag);                                                        
+parent.appendChild(frag); 
+                                                    
 }
 
 
+function getindex()
+{
+  for(let i=0;i<divs.length;i++){
+    if(divs[i].children[0].id==='zz')
+    {//console.log(divs[i]);
+      index=divs[i];
+      num=i;
+    }
+  }
+}
+
+//function draggable(){
+
+  
+//}
