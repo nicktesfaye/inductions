@@ -26,6 +26,8 @@ let abc;                      //the dragged element
 let num;                      //blank box  as a element of divs array
 let divsindex;                //parent of dragged element as a element of divs array
 let term=0;                   //find legality of move
+let z=1;
+
 
 var parent = document.getElementById("p1");
 divs = parent.children;
@@ -39,6 +41,7 @@ getindex();         //index of blank in the start
 reset.addEventListener('click',function(){                                    //buttonclick  reset
   start();   
   rnd(); 
+  z=1;
   score.innerHTML = "Score :"
   time1 =new Date();
   count=0;                                   
@@ -46,7 +49,8 @@ reset.addEventListener('click',function(){                                    //
 
 tryagain1.addEventListener('click',function(){                                    //buttonclick tryagain
   start();   
-  rnd();      
+  rnd();    
+  z=1;  
   pop.style.display='none';
   score.innerHTML = "Score :";
   time1 =new Date(); 
@@ -54,7 +58,8 @@ tryagain1.addEventListener('click',function(){                                  
 });
 
 close.addEventListener('click',function(){                                    //buttonclick tryagain     
-  pop.style.display='none';                             
+  pop.style.display='none'; 
+  z=0;                         
 });
 
 //Fill listeners
@@ -503,11 +508,12 @@ pop.style.display="flex";
 time2=new Date();
 let total=(time2-time1)/1000;
 total=points-total-(2*count);
-if(total>10)
+if(z===1)
+{if(total>10)
 score.innerHTML += String(Math.floor(total));      
 else
 score.innerHTML += String(10);                //append score to display
-}
+}}
 else
 console.log("different");
 STR="";
