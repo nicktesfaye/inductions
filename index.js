@@ -27,7 +27,7 @@ let num;                      //blank box  as a element of divs array
 let divsindex;                //parent of dragged element as a element of divs array
 let term=0;                   //find legality of move
 let z=1;
-
+let aud=document.getElementById("b");
 
 var parent = document.getElementById("p1");
 divs = parent.children;
@@ -141,6 +141,7 @@ function dragEnd2() {
   this.className = 'fill3';
   get();
   compare();
+ 
 }
 
 function dragEnd3() {
@@ -155,6 +156,7 @@ function dragEnd4() {
   this.className = 'fill5';                                     
   get();
   compare();
+
 }
 
 function dragEnd5() {
@@ -162,7 +164,7 @@ function dragEnd5() {
   this.className = 'fill6';                                    
   get();
   compare();
-  
+ 
 }                                                              //end}
 
 
@@ -188,6 +190,7 @@ function dragDrop()
   var idd=this.children[0].id;
   var id = abc.id;  //get dragging elements id
 
+  aud.play();
   for(let i=0;i<divs.length;i++)
   {
     if(abc.parentElement.id===divs[i].id)
@@ -504,6 +507,10 @@ function compare()                         //compare the 3x3 grid
 {
 if(STR.localeCompare(CMP)===0)
 {console.log("same");
+
+let audio=document.getElementById("a");
+audio.play();
+
 pop.style.display="flex";
 time2=new Date();
 let total=(time2-time1)/1000;
@@ -541,7 +548,3 @@ function getindex()
   }
 }
 
-//function draggable(){
-
-  
-//}
