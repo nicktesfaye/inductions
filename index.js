@@ -13,8 +13,10 @@ const pop=document.querySelector('.pop');                    //get all the varia
 const close=document.querySelector('.close');
 const score=document.getElementById('002');
 const grey=document.querySelector('.blank');
-const HS=document.getElementById('0001')
-
+const HS=document.getElementById('0001');
+const getun = document.querySelector('.button_2');
+const pop2=document.querySelector('.userid');
+const player=document.querySelector('.text5');
 
 let STR="";                   //5x5 string
 let CMP="";                   //3x3 string             
@@ -28,10 +30,10 @@ let abc;                      //the dragged element
 let num;                      //blank box  as a element of divs array
 let divsindex;                //parent of dragged element as a element of divs array
 let term=0;                   //find legality of move
-let z=1;
-let aud=document.getElementById("b");
-let tt=0;
-
+let z=1;                      //prevent a bug
+let aud=document.getElementById("b"); //drop sound
+let tt=0;                               //store highscore
+let un;                                 //store username
 
 var parent = document.getElementById("p1");
 divs = parent.children;
@@ -41,12 +43,20 @@ start();            //randomise 3x3 grid colours
 rnd();              //randomise 5x5 grid colours
 getindex();         //index of blank in the start
 
- 
+getun.addEventListener('click',function(){                                    //submit username
+  un=document.getElementById("Username").value;
+  if(un==="")
+  alert("Please enter username");
+  else
+  pop2.style.display="none";
+}); 
+
+
 reset.addEventListener('click',function(){                                    //buttonclick  reset
   start();   
   rnd(); 
   z=1;
-  score.innerHTML = "Score :"
+  score.innerHTML = "<b>Score : <b>";
   time1 =new Date();
   count=0;                                   
 });
@@ -56,7 +66,7 @@ tryagain1.addEventListener('click',function(){                                  
   rnd();    
   z=1;  
   pop.style.display='none';
-  score.innerHTML = "Score :";
+  score.innerHTML ="<b>Score : <b>";
   time1 =new Date(); 
   count=0;                            
 });
@@ -568,14 +578,20 @@ function highscr()
 
 if(highscore !== null){
     if (tt > highscore) {
-        localStorage.setItem("highscore", String(tt));      
+        localStorage.setItem("highscore", String(tt));
+        localStorage.setItem("player",un);      
     }
 }
 else{
     localStorage.setItem("highscore", String(tt));
-
+    localStorage.setItem("player",String(un));
 }
+
+
 
 HS.innerHTML = "<b>High Score : <b>";
 HS.innerHTML += localStorage.getItem("highscore");
+
+player.innerHTML="<b>Player: <b>";
+player.innerHTML +=localStorage.getItem("player");
 }
