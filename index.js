@@ -523,7 +523,8 @@ if(z===1)
 {if(total>10)
   {
     tt=Math.floor(total);
-score.innerHTML += String(tt); 
+score.innerHTML += String(tt);
+highscr(); 
   }
 else
 {
@@ -535,7 +536,7 @@ else
 console.log("different");
 STR="";
 
-highscr();
+
 }
 
 function rnd(){                           //randomise colour for 5x5 grid
@@ -560,6 +561,7 @@ function getindex()
   }
 }
 
+
 function highscr()
 {
   var highscore = localStorage.getItem("highscore");
@@ -574,5 +576,6 @@ else{
 
 }
 
+HS.innerHTML = "<b>High Score : <b>";
 HS.innerHTML += localStorage.getItem("highscore");
 }
