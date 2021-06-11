@@ -13,6 +13,8 @@ const pop=document.querySelector('.pop');                    //get all the varia
 const close=document.querySelector('.close');
 const score=document.getElementById('002');
 const grey=document.querySelector('.blank');
+const HS=document.getElementById('0001')
+
 
 let STR="";                   //5x5 string
 let CMP="";                   //3x3 string             
@@ -28,6 +30,8 @@ let divsindex;                //parent of dragged element as a element of divs a
 let term=0;                   //find legality of move
 let z=1;
 let aud=document.getElementById("b");
+let tt=0;
+
 
 var parent = document.getElementById("p1");
 divs = parent.children;
@@ -517,13 +521,21 @@ let total=(time2-time1)/1000;
 total=points-total-(2*count);
 if(z===1)
 {if(total>10)
-score.innerHTML += String(Math.floor(total));      
+  {
+    tt=Math.floor(total);
+score.innerHTML += String(tt); 
+  }
 else
-score.innerHTML += String(10);                //append score to display
+{
+  score.innerHTML += String(10);                //append score to display
+  tt=10;
+}
 }}
 else
 console.log("different");
 STR="";
+
+highscr();
 }
 
 function rnd(){                           //randomise colour for 5x5 grid
@@ -541,10 +553,26 @@ function getindex()
 {
   for(let i=0;i<divs.length;i++){
     if(divs[i].children[0].id==='zz')
-    {//console.log(divs[i]);
+    {
       index=divs[i];
       num=i;
     }
   }
 }
 
+function highscr()
+{
+  var highscore = localStorage.getItem("highscore");
+
+if(highscore !== null){
+    if (tt > highscore) {
+        localStorage.setItem("highscore", String(tt));      
+    }
+}
+else{
+    localStorage.setItem("highscore", String(tt));
+
+}
+
+HS.innerHTML += localStorage.getItem("highscore");
+}
